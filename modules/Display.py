@@ -3,22 +3,17 @@ from colorama import Fore, Back, Style
 colorama.init(autoreset=True)
 
 class Display:
-	def PassBig(self):
+	# For handling printing of checkmarks for grades
+	def grade(self, gradeSign, column, eolRule):
 		"""Prints white " ✔  " on a green BackGround"""
-		print(f"{Back.GREEN}{Fore.WHITE} ✔  ")
-	def PassSmall(self):
-		"""Prints green "✔" sign"""
-		print(f"{Fore.GREEN}✔")
-	def FailBig(self):
-		"""Prints white " ✘  " on a red BackGround"""
-		print(f"{Back.RED}{Fore.WHITE} ✘  ")
-	def FailSmall(self):
-		"""Prints red "✘" sign"""
-		print(f"{Fore.RED}✘")
+		print(f"{Fore.WHITE}{Back.GREEN if gradeSign == '✔' else Back.RED}{gradeSign: <{column}}", end = eolRule)
+	
+	# For handling printing
 	def print(self, msgs, useColor, column, eolRule):
-		colors = {"red":Fore.RED, "green":Fore.GREEN, "yellow":Fore.YELLOW}
+		colors = {"red": Fore.RED, "green": Fore.GREEN, "yellow": Fore.YELLOW, "magenta": Fore.MAGENTA, "cyan": Fore.CYAN}
 		for msg in msgs:
 			print(f"{colors[useColor]}{msg: <{column}}", end = eolRule)
 
-
+# Init the class
+display = Display()
 		
